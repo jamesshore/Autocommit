@@ -25,7 +25,7 @@ desc("Lint the code");
 task("lint", [], function() {
 	var files = new jake.FileList();
 	files.include("src/*.js");
-	files.include("test/*.js");
+//	files.include("test/*.js");
 	files.include("build/*.js");
 	files.include("./*.js");
 

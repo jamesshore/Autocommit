@@ -1,8 +1,9 @@
 "use strict";
 require("should");
+var lint = require("./lint_runner.js")
 
-describe("Test runner", function() {
-	it("should run", function(){
-		(1).should.equal(1);
+describe("Lint Runner", function() {
+	it("should compile", function(){
+
 	});
 });

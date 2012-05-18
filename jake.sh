@@ -1,8 +1,24 @@
 #!/bin/bash
 
+statusFile="build/last_status"
+
+oldStatus=`cat $statusFile`
+
 node node_modules/.bin/jake $*
 if [ $? = 0 ]; then
-	echo "Wrapper: Build Succeeded"
+	newStatus="Passed"
 else
-	echo "Wrapper: Build Failed"
+	newStatus="Failed"
+fi
+
+echo $newStatus > $statusFile
+
+echo
+echo "Last run: $oldStatus"
+echo "This run: $newStatus"
+
+if [ $oldStatus = $newStatus ]; then
+	echo "No change"
+else
+	echo "Status changed"
 fi

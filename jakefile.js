@@ -5,6 +5,11 @@ var Mocha = require("mocha");
 var lint = require("./build/lint.js");
 
 
+// Delete me
+task('pass');
+task('fail', function() {fail()});
+
+
 task('default', ['lint', 'test']);
 
 desc("Run tests");

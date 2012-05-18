@@ -18,6 +18,7 @@ if [ "$oldStatus" != "$newStatus" ]; then
 
 	gitStatus=`git status --porcelain`
 	if [ "$gitStatus" != "" ]; then
-		echo "WARNING: Uncommitted files; use 'git add'"
+		echo
+		echo "!! WARNING: Uncommitted files; use 'git add'"
 	fi
 fi

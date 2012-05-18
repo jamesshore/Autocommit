@@ -6,26 +6,18 @@ oldStatus=`cat $statusFile`
 
 node node_modules/.bin/jake $*
 if [ $? = 0 ]; then
-	newStatus="Passed"
+	newStatus="PASS"
 else
-	newStatus="Failed"
+	newStatus="FAIL"
 fi
 
 echo $newStatus > $statusFile
 
-echo
-echo "Last run: $oldStatus"
-echo "This run: $newStatus"
-
-if [ $oldStatus = $newStatus ]; then
-	echo "No change"
-else
-	echo "Status changed"
+if [ "$oldStatus" != "$newStatus" ]; then
+	git commit -a -m 'Autocommit: Build state toggled to $newStatus'
 fi
 
 gitStatus=`git status --porcelain`
-if [ "$gitStatus" = "" ]; then
-	echo "Git status: NO changes"
-else
-	echo "Git status: YES changes"
+if [ "$gitStatus" != "" ]; then
+	echo "WARNING: Uncommitted files; use 'git add'"
 fi

@@ -22,3 +22,10 @@ if [ $oldStatus = $newStatus ]; then
 else
 	echo "Status changed"
 fi
+
+gitStatus=`git status --porcelain`
+if [ "$gitStatus" = "" ]; then
+	echo "Git status: NO changes"
+else
+	echo "Git status: YES changes"
+fi

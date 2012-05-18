@@ -1,11 +1,34 @@
-/*global desc, task, jake, fail */
+/*global desc, task, jake, fail, complete */
 "use strict";
 
-task('default', ['lint']);
+var Mocha = require("mocha");
+var lint = require("./build/lint.js");
+
+
+task('default', ['lint', 'test']);
+
+desc("Run tests");
+task("test", [], function() {
+	var mocha = new Mocha({ui: "bdd"});
+	mocha.addFile("test/lint.js");
+
+	var failures = false;
+	mocha.run()
+	.on("fail", function() {
+		failures = true;
+	}).on("end", function() {
+		if (failures) fail("Tests failed");
+		complete();
+	});
+}, {async: true});
 
 desc("Lint the code");
 task("lint", [], function() {
-	var lint = require("./build/lint.js");
+	var files = new jake.FileList();
+	files.include("src/*.js");
+	files.include("test/*.js");
+	files.include("build/*.js");
+	files.include("./*.js");
 
 	var options = {
 		bitwise: true,
@@ -25,11 +48,11 @@ task("lint", [], function() {
 		node: true
 	};
 
-	var files = new jake.FileList();
-	files.include('src/*.js');
-	files.include('build/*.js');
-	files.include('./*.js');
+	var globals = {
+		describe: false,
+		it: false
+	};
 
-	var pass = lint.run(files.toArray(), options);
+	var pass = lint.run(files.toArray(), options, globals);
 	if (!pass) fail("Lint failed");
 });

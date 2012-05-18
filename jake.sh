@@ -14,10 +14,10 @@ fi
 echo $newStatus > $statusFile
 
 if [ "$oldStatus" != "$newStatus" ]; then
-	git commit -a -m 'Autocommit: Build state toggled to $newStatus'
-fi
+	git commit -a -m "Autocommit: Build state toggled to $newStatus"
 
-gitStatus=`git status --porcelain`
-if [ "$gitStatus" != "" ]; then
-	echo "WARNING: Uncommitted files; use 'git add'"
+	gitStatus=`git status --porcelain`
+	if [ "$gitStatus" != "" ]; then
+		echo "WARNING: Uncommitted files; use 'git add'"
+	fi
 fi

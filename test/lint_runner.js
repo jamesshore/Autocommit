@@ -25,7 +25,7 @@ describe("Error reporting", function() {
 	it("should test console.log", function() {
 		// stdout inspection code inspired by http://userinexperience.com/?p=714
 		function setup(callback) {
-			var output = []
+			var output = [];
 
 			var write = process.stdout.write;
 

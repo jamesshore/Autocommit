@@ -1,5 +1,7 @@
 "use strict";
 
-exports.validateSource = function() {
-	return true;
+var jshint = require("jshint").JSHINT;
+
+exports.validateSource = function(sourceCode) {
+	return jshint(sourceCode);
 };

@@ -3,5 +3,9 @@
 var jshint = require("jshint").JSHINT;
 
 exports.validateSource = function(sourceCode, options, globals) {
-	return jshint(sourceCode, options, globals);
+	var pass = jshint(sourceCode, options, globals);
+	if (pass) {
+		console.log("ok");
+	}
+	return pass;
 };

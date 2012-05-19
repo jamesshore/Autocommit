@@ -43,6 +43,6 @@ describe("Error reporting", function() {
 		});
 		console.log("foo");
 		unhook();
-		expect(output).to.equal(["foo"]);
+		expect(output).to.eql(["foo\n"]);
 	});
 });

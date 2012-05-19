@@ -22,25 +22,23 @@ describe("Lint runner", function() {
 });
 
 describe("Error reporting", function() {
-	it("should test console.log", function() {
-		// stdout inspection code inspired by http://userinexperience.com/?p=714
-		function setup(callback) {
-			var output = [];
+	// stdout inspection code inspired by http://userinexperience.com/?p=714
+	function testConsole(test) {
+		var output = [];
+		var write = process.stdout.write;
+		process.stdout.write = function(string, encoding, fd) {
+			output.push(string);
+		};
 
-			var write = process.stdout.write;
+		test(output);
 
-			process.stdout.write = function(string, encoding, fd) {
-				output.push(string);
-			};
+		process.stdout.write = write;
+	}
 
-			callback(output);
-
-			process.stdout.write = write;
-		}
-
-		setup(function(output) {
-			console.log("foo");
-			expect(output).to.eql(["foo\n"]);
+	it("should say 'ok' on pass", function() {
+		testConsole(function(output) {
+			lint.validateSource("");
+			expect(output).to.eql(["ok\n"]);
 		});
 	});
 });

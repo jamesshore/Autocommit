@@ -15,4 +15,8 @@ describe("Lint Runner", function() {
 	it("should respect options", function() {
 		expect(lint.validateSource("a = 1;", { undef:false })).to.be(true);
 	});
+
+	it("should respect globals", function() {
+		expect(lint.validateSource("a = 1;", { undef: true }, { a: true })).to.be(true);
+	})
 });

@@ -39,7 +39,7 @@ describe("Error reporting", function() {
 		var output = [];
 		var unhook = setup(function(string) {
 			output.push(string);
-//			expect(string).to.equal("foo");
+			expect(string).to.equal("foo");
 		});
 		console.log("foo");
 		unhook();

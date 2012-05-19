@@ -25,23 +25,22 @@ describe("Error reporting", function() {
 	it("should test console.log", function() {
 		// stdout inspection code inspired by http://userinexperience.com/?p=714
 		function setup(callback) {
+			var output = []
+
 			var write = process.stdout.write;
 
 			process.stdout.write = function(string, encoding, fd) {
-				callback(string, encoding, fd);
+				output.push(string);
 			};
 
-			return function() {
-				process.stdout.write = write;
-			};
+			callback(output);
+
+			process.stdout.write = write;
 		}
 
-		var output = [];
-		var unhook = setup(function(string) {
-			output.push(string);
+		setup(function(output) {
+			console.log("foo");
+			expect(output).to.eql(["foo\n"]);
 		});
-		console.log("foo");
-		unhook();
-		expect(output).to.eql(["foo\n"]);
 	});
 });

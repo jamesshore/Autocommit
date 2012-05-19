@@ -13,6 +13,6 @@ describe("Lint Runner", function() {
 	});
 
 	it("should respect options", function() {
-		expect(lint.validateSource("", { strict: true })).to.be(false);
-	})
+		expect(lint.validateSource("a = 1;", { undef:false })).to.be(true);
+	});
 });

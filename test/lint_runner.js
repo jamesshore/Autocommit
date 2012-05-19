@@ -1,11 +1,10 @@
-/*jshint expr:true */
-
 "use strict";
-require("should");
+
+//var expect = require("expect");
 var lint = require("../src/lint_runner.js");
 
 describe("Lint Runner", function() {
 	it("should pass good source code", function(){
-		lint.validateSource("var a = 1;").should.be.true;
+//		expect(lint.validateSource("var a = 1;")).to.be(true);
 	});
 });

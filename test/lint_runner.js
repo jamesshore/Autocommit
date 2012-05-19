@@ -34,7 +34,7 @@ describe("Error reporting", function() {
 			return function() {
 				process.stdout.write = write;
 			};
-		};
+		}
 
 		var output = [];
 		var unhook = setup(function(string) {

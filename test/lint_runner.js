@@ -18,5 +18,5 @@ describe("Lint Runner", function() {
 
 	it("should respect globals", function() {
 		expect(lint.validateSource("a = 1;", { undef: true }, { a: true })).to.be(true);
-	})
+	});
 });

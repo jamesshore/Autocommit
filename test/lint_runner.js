@@ -11,4 +11,8 @@ describe("Lint Runner", function() {
 	it("should fail bad source code", function() {
 		expect(lint.validateSource("bargledy-bargle")).to.be(false);
 	});
+
+	it("should respect options", function() {
+		expect(lint.validateSource("", { strict: true })).to.be(false);
+	})
 });

@@ -1,6 +1,6 @@
 "use strict";
 
-//var expect = require("expect");
+var expect = require("expect.js");
 var lint = require("../src/lint_runner.js");
 
 describe("Lint Runner", function() {

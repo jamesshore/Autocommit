@@ -81,12 +81,23 @@ describe("Error reporting", function() {
 		});
 	});
 
+	it("should report all errors", function() {
+		lint.validateSource("foo\nbar()");
+		expect(output).to.eql([
+			"fail",
+			"1: foo",
+			"   Expected an assignment or function call and instead saw an expression."
+			"2: bar()",
+			"   Expected semicolon."
+		]);
+	});
+
 	//TODO: optional source code descriptor
 });
 
 //TODO: delete me
-it("manual inspection", function() {
-	testConsole.restore();
-	lint.validateSource("foo");
-	testConsole.ignore();
-});
+//it("manual inspection", function() {
+//	testConsole.restore();
+//	lint.validateSource("foo");
+//	testConsole.ignore();
+//});

@@ -4,7 +4,7 @@ var expect = require("expect.js");
 var assert = require("assert");
 var lint = require("../src/lint_runner.js");
 
-// stdout inspection code inspired by http://userinexperience.com/?p=714
+// console inspection code inspired by http://userinexperience.com/?p=714
 function TestConsole(newFunction) {
 	var original;
 	this.redirect = function(newFunction) {
@@ -32,14 +32,14 @@ function inspectConsole(test) {
 	console.restore();
 }
 
-var console2 = new TestConsole();
+var testConsole = new TestConsole();
 
 beforeEach(function() {
-	console2.ignore();
+	testConsole.ignore();
 });
 
 afterEach(function() {
-	console2.restore();
+	testConsole.restore();
 });
 
 
@@ -66,6 +66,13 @@ describe("Error reporting", function() {
 		inspectConsole(function(output) {
 			lint.validateSource("");
 			expect(output).to.eql(["ok"]);
+		});
+	});
+
+	it("should say 'fail' on failure", function() {
+		inspectConsole(function(output) {
+			lint.validateSource("man the bilge pumps, yarr!");
+			expect(output).to.eql(["fail"]);
 		});
 	});
 });

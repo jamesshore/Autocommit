@@ -1,4 +1,6 @@
+/* Copyright (c) 2012 James Shore - See README.txt for license */
 /*global desc, task, jake, fail, complete */
+
 "use strict";
 
 var Mocha = require("mocha");

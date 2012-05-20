@@ -92,8 +92,8 @@ describe("File loading", function() {
 			fs.writeFileSync(tempFile, "");
 			lint.validateFile(tempFile);
 			expect(output[0]).to.eql(tempFile + " ok");
-		})
-	})
+		});
+	});
 });
 
 describe("Error reporting", function() {

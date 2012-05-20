@@ -78,7 +78,7 @@ describe("File loading", function() {
 	});
 
 	it("should respect options", function() {
-//		fs.writeFileSync(tempFile)
+		fs.writeFileSync(tempFile, "a = 1;", { undef: false })).to.be(true);
 	});
 
 	// TODO: should use filename as description

@@ -144,9 +144,31 @@ describe("File list validation", function() {
 		expect(lint.validateFileList(testFiles)).to.be(false);
 	});
 
-	it("should report filenames");
+	it("should report filenames", function() {
+		inspectConsole(function(output) {
+			writeTestFiles("var a=1;", "var b=1;", "var c=1;");
+			lint.validateFileList(testFiles);
+			expect(output).to.eql([
+				testFiles[0] + " ok",
+				testFiles[1] + " ok",
+				testFiles[2] + " ok"
+			]);
+		});
+	});
 
-	it("should validate later files even if early file fails");
+	it("should validate later files even if early file fails", function() {
+		inspectConsole(function(output) {
+			writeTestFiles("var a=1", "var b=1;", "var c=1;");
+			lint.validateFileList(testFiles);
+			expect(output).to.eql([
+				testFiles[0] + " failed",
+				"1: var a=1",
+				"   Missing semicolon.",
+				testFiles[1] + " ok",
+				testFiles[2] + " ok"
+			]);
+		});
+	});
 });
 
 describe("Error reporting", function() {

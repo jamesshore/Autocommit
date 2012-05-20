@@ -73,7 +73,7 @@ describe("File loading", function() {
 	});
 
 	afterEach(function() {
-		fs.unlinkSync(tempFile);
+		if (path.existsSync(tempFile)) fs.unlinkSync(tempFile);
 		expect(path.existsSync(tempFile)).to.not.be.ok();
 	});
 

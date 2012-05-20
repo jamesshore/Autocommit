@@ -3,7 +3,7 @@
 var expect = require("expect.js");
 var assert = require("assert");
 var fs = require("fs");
-var temp = require("temp");
+var path = require("path");
 
 var lint = require("../src/lint_runner.js");
 
@@ -65,16 +65,19 @@ describe("Source code validation", function() {
 });
 
 describe("File loading", function() {
+	var tempFile;
+
+	beforeEach(function() {
+		var tempDir = "build/temp_files";
+		tempFile = tempDir + "/file-loading-test.js";
+	});
+
+	afterEach(function() {
+		fs.unlinkSync(tempFile);
+		expect(path.existsSync(tempFile)).to.not.be.ok();
+	});
+
 	it("(test prep)", function() {
-		testConsole.restore();
-
-		var name = temp.mkdirSync("autocommit-test");
-		console.log(name);
-		var name2 = fs.writeFileSync(name + "code.js", "Example");
-		console.log(name2);
-
-
-		testConsole.ignore();
 	});
 });
 

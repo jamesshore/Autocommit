@@ -7,11 +7,16 @@ var lint = require("../src/lint_runner.js");
 
 // stdout inspection code inspired by http://userinexperience.com/?p=714
 function RedirectConsole(newFunction) {
-	var original = console.log;
+	var original;
+	this.redirect = function(newFunction) {
+		expect(original).to.be.not.ok();
+		var original = console.log;
+		console.log = newFunction;
+	}
 	this.restore = function() {
 		console.log = original;
+		original = null;
 	};
-	console.log = newFunction;
 }
 
 function testConsole(test) {

@@ -65,20 +65,22 @@ describe("Source code validation", function() {
 });
 
 describe("File loading", function() {
-	var tempFile;
-
-	beforeEach(function() {
-		var tempDir = "build/temp_files";
-		tempFile = tempDir + "/file-loading-test.js";
-	});
+	var tempFile = "build/temp_files/file-loading-test.js";
 
 	afterEach(function() {
 		if (path.existsSync(tempFile)) fs.unlinkSync(tempFile);
-		expect(path.existsSync(tempFile)).to.not.be.ok();
+		assert.ok(!path.existsSync(tempFile), "Could not delete test file: " + tempFile);
 	});
 
-	it("(test prep)", function() {
+	it("should load file from file system (assume UTF-8)", function() {
+		inspectConsole(function(output) {
+			fs.writeFileSync(tempFile, "foo;");
+			lint.validateFile(tempFile);
+			expect(output[1]).to.eql("1: foo;");
+		});
 	});
+
+	// TODO: should use filename as description
 });
 
 describe("Error reporting", function() {

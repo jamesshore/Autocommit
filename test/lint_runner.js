@@ -158,7 +158,7 @@ describe("File list validation", function() {
 
 	it("should validate later files even if early file fails", function() {
 		inspectConsole(function(output) {
-			writeTestFiles("var a=1", "var b=1;", "var c=1;");
+			writeTestFiles("YARR=1;", "var b=1;", "var c=1;");
 			lint.validateFileList(testFiles);
 			expect(output[0]).to.eql(testFiles[0] + " failed");
 			expect(output[3]).to.eql(testFiles[1] + " ok");

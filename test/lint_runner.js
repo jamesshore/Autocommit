@@ -16,7 +16,7 @@ function testConsole(test) {
 	var output = [];
 	var original = redirectConsole(function(string, encoding, fd) {
 		output.push(string);
-	};
+	});
 	test(output);
 	process.stdout.write = original;
 }

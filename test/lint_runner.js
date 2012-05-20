@@ -94,6 +94,13 @@ describe("Error reporting", function() {
 		});
 	});
 
+	it("should trim whitespace from source code", function() {
+		inspectConsole(function(output) {
+			lint.validateSource("   foo()\t \n");
+			expect(output[1]).to.eql("1: foo()");
+		});
+	});
+
 	//TODO: optional source code descriptor
 });
 

@@ -24,6 +24,6 @@ exports.validateFile = function(filename, options, globals) {
 	return exports.validateSource(sourceCode, options, globals, filename);
 };
 
-exports.validateFileList = function(fileList, options) {
-	return exports.validateFile(fileList[0], options);
+exports.validateFileList = function(fileList, options, globals) {
+	return exports.validateFile(fileList[0], options, globals);
 };

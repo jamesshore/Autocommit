@@ -131,7 +131,7 @@ describe("File list validation", function() {
 
 	it("should respect globals", function() {
 		writeTestFiles("a = 1;");
-		expect(lint.validateFile(testFiles, { undef: true }, { a: true })).to.be(true);
+		expect(lint.validateFileList(testFiles, { undef: true }, { a: true })).to.be(true);
 	});
 
 	it("should pass when all files valid", function() {

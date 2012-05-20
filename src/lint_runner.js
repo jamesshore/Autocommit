@@ -23,3 +23,7 @@ exports.validateFile = function(filename, options, globals) {
 	var sourceCode = fs.readFileSync(filename, "utf8");
 	return exports.validateSource(sourceCode, options, globals, filename);
 };
+
+exports.validateFileList = function(fileList) {
+	return true;
+};

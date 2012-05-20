@@ -2,10 +2,11 @@
 
 var jshint = require("jshint").JSHINT;
 
-exports.validateSource = function(sourceCode, options, globals) {
+exports.validateSource = function(sourceCode, options, globals, description) {
+	description = description ? description + " " : "";
 	var pass = jshint(sourceCode, options, globals);
 	if (pass) {
-		console.log("ok");
+		console.log(description + "ok");
 	}
 	else {
 		console.log("fail");

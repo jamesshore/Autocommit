@@ -82,6 +82,11 @@ describe("File loading", function() {
 		expect(lint.validateFile(tempFile, { asi: true })).to.be(true);
 	});
 
+	it("should respect globals", function() {
+		fs.writeFileSync(tempFile, "a = 1;")
+		expect(lint.validateFile(tempFile, { undef: true }, { a: true })).to.be(true);
+	});
+
 	// TODO: should use filename as description
 });
 

@@ -56,7 +56,7 @@ describe("Source code validation", function() {
 	});
 
 	it("should respect options", function() {
-		expect(lint.validateSource("a = 1")).to.be(true);
+		expect(lint.validateSource("a = 1", { asi: true })).to.be(true);
 	});
 
 	it("should respect globals", function() {

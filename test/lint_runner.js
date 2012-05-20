@@ -10,7 +10,7 @@ function RedirectConsole(newFunction) {
 	var original = console.log;
 	this.restore = function() {
 		console.log = original;
-	}
+	};
 	console.log = newFunction;
 }
 
@@ -20,7 +20,7 @@ function testConsole(test) {
 		output.push(string);
 	});
 	test(output);
-	console.restore;
+	console.restore();
 }
 
 describe("Lint runner", function() {

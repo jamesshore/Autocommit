@@ -107,7 +107,7 @@ describe("Error reporting", function() {
 			expect(output[0]).to.eql("code A ok");
 		});
 		inspectConsole(function(output) {
-			lint.validateSource("foo;" {}, {}, "code B");
+			lint.validateSource("foo;", {}, {}, "code B");
 			expect(output[0]).to.eql("code B fail");
 		});
 	});

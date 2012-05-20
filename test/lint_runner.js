@@ -106,6 +106,10 @@ describe("Error reporting", function() {
 			lint.validateSource("", {}, {}, "code A");
 			expect(output[0]).to.eql("code A ok");
 		});
+		inspectConsole(function(output) {
+			lint.validateSource("foo;" {}, {}, "code B");
+			expect(output[0]).to.eql("code B fail");
+		});
 	});
 
 	// To do: Some edge cases that I don't know how to trigger, so haven't tested or supported:

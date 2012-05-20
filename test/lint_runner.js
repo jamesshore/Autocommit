@@ -83,7 +83,7 @@ describe("File loading", function() {
 	});
 
 	it("should respect globals", function() {
-		fs.writeFileSync(tempFile, "a = 1;")
+		fs.writeFileSync(tempFile, "a = 1;");
 		expect(lint.validateFile(tempFile, { undef: true }, { a: true })).to.be(true);
 	});
 

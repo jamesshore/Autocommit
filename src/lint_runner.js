@@ -19,7 +19,7 @@ exports.validateSource = function(sourceCode, options, globals, description) {
 	return pass;
 };
 
-exports.validateFile = function(filename) {
+exports.validateFile = function(filename, options) {
 	var sourceCode = fs.readFileSync(filename, "utf8");
-	return exports.validateSource(sourceCode);
+	return exports.validateSource(sourceCode, options);
 };

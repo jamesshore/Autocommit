@@ -76,16 +76,17 @@ describe("Error reporting", function() {
 			expect(output).to.eql([
 				"fail",
 				"1: foo",
-				"\tExpected an assignment or function call and instead saw an expression."
+				"   Expected an assignment or function call and instead saw an expression."
 			]);
 		});
 	});
 
-	it("manual inspection", function() {
-		testConsole.restore();
-		lint.validateSource("foo");
-		testConsole.ignore();
-	});
-
 	//TODO: optional source code descriptor
+});
+
+//TODO: delete me
+it("manual inspection", function() {
+	testConsole.restore();
+	lint.validateSource("foo");
+	testConsole.ignore();
 });

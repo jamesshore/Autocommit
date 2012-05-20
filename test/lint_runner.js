@@ -15,7 +15,7 @@ function TestConsole(newFunction) {
 		console.log = newFunction;
 	};
 	this.ignore = function() {
-		this.redirect(function() {};);
+		this.redirect(function() {});
 	};
 	this.restore = function() {
 		assert.ok(original, "Console not redirected");

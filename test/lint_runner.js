@@ -71,11 +71,13 @@ describe("Error reporting", function() {
 
 	it("should report errors on failure", function() {
 		inspectConsole(function(output) {
-			lint.validateSource("man the bilge pumps, yarr!");
+			lint.validateSource("foo");
 			expect(output).to.eql([
 				"fail",
-				"some sort of error message tbd..."
+				"1"
 			]);
 		});
 	});
+
+	//TODO: optional source code descriptor
 });

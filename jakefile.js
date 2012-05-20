@@ -49,7 +49,9 @@ task("lint", [], function() {
 
 	var globals = {
 		describe: false,
-		it: false
+		it: false,
+		beforeEach: false,
+		afterEach: false
 	};
 
 	var pass = lint.run(files.toArray(), options, globals);

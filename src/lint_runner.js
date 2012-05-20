@@ -8,7 +8,7 @@ exports.validateSource = function(sourceCode, options, globals) {
 		console.log("ok");
 	}
 	else {
-		console.log("fail");
+		console.log("fails");
 	}
 	return pass;
 };

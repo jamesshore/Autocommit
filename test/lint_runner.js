@@ -78,7 +78,8 @@ describe("File loading", function() {
 	});
 
 	it("should respect options", function() {
-		fs.writeFileSync(tempFile, "a = 1;", { undef: false })).to.be(true);
+		fs.writeFileSync(tempFile, "a = 1;");
+		expect(lint.validateFile(tempFile, { undef: false })).to.be(true);
 	});
 
 	// TODO: should use filename as description

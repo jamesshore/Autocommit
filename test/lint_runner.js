@@ -24,7 +24,7 @@ function TestConsole(newFunction) {
 	};
 }
 
-function testConsole(test) {
+function inspectConsole(test) {
 	var output = [];
 	var console = new TestConsole();
 	console.redirect(function(string) {
@@ -34,17 +34,18 @@ function testConsole(test) {
 	console.restore();
 }
 
+var console = new TestConsole();
+
+beforeEach(function() {
+	console.ignore();
+});
+
+afterEach(function() {
+	console.restore();
+});
+
+
 describe("Lint runner", function() {
-	var console = new TestConsole();
-
-	beforeEach(function() {
-		console.redirect(function() {});
-	});
-
-	afterEach(function() {
-		console.restore();
-	});
-
 	it("should pass good source code", function(){
 		expect(lint.validateSource("var a = 1;")).to.be(true);
 	});
@@ -63,8 +64,18 @@ describe("Lint runner", function() {
 });
 
 describe("Error reporting", function() {
+	var console = new TestConsole();
+
+	beforeEach(function() {
+		console.ignore();
+	});
+
+	afterEach(function() {
+		console.restore();
+	});
+
 	it("should say 'ok' on pass", function() {
-		testConsole(function(output) {
+		inspectConsole(function(output) {
 			lint.validateSource("");
 			expect(output).to.eql(["ok"]);
 		});

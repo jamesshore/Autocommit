@@ -2,6 +2,9 @@
 
 var expect = require("expect.js");
 var assert = require("assert");
+var fs = require("fs");
+var temp = require("temp");
+
 var lint = require("../src/lint_runner.js");
 
 // console inspection code inspired by http://userinexperience.com/?p=714
@@ -43,7 +46,7 @@ afterEach(function() {
 });
 
 
-describe("Lint runner", function() {
+describe("Source code validation", function() {
 	it("should pass good source code", function(){
 		expect(lint.validateSource("var a = 1;")).to.be(true);
 	});
@@ -59,7 +62,13 @@ describe("Lint runner", function() {
 	it("should respect globals", function() {
 		expect(lint.validateSource("a = 1;", { undef: true }, { a: true })).to.be(true);
 	});
+});
 
+describe("File loading", function() {
+	it("(test prep)", function() {
+		var name = temp.mkdirSync();
+		util.log(name);
+	});
 });
 
 describe("Error reporting", function() {
@@ -117,9 +126,3 @@ describe("Error reporting", function() {
 	// 2- null element at end of errors array; occurs when JSHint catches exception
 });
 
-//TODO: delete me
-//it("manual inspection", function() {
-//	testConsole.restore();
-//	lint.validateSource("foo");
-//	testConsole.ignore();
-//});

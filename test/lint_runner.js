@@ -107,7 +107,7 @@ describe("File list validation", function() {
 	function writeTestFiles() {
 		testConsole.restore();
 
-		for (int i = 0; i < arguments.length; i++) {
+		for (var i = 0; i < arguments.length; i++) {
 			console.log(i + ": " + arguments[i]);
 		}
 

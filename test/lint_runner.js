@@ -82,10 +82,10 @@ describe("Error reporting", function() {
 	});
 
 	it("manual inspection", function() {
-		console.restore();
+		testConsole.restore();
 		lint.validateSource("foo");
-		console.ignore();
-	})
+		testConsole.ignore();
+	});
 
 	//TODO: optional source code descriptor
 });

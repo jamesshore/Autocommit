@@ -113,7 +113,7 @@ describe("File list validation", function() {
 		for (var i = 0; i < arguments.length; i++) {
 			var testFile = testRoot + i;
 			fs.writeFileSync(testFile, arguments[i]);
-			testFile.push(testFile);
+			testFiles.push(testFile);
 		}
 	}
 

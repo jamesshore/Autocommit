@@ -2,7 +2,7 @@ Autocommit (a JSHint Runner)
 ============================
 An experiment in demonstrating TDD.
 
-The commits in this repository show how an application developed with test-driven development (TDD) grows and changes over time. Most of the commits were automatically generated: every time the build status toggled from "Passing" to "Failing" and back, my build script automatically committed the changes. By paging through the commit logs, you can see how the code evolved over time.
+The commits in this repository show how an application developed with test-driven development (TDD) grows and changes over time. Most of the commits were automatically generated: every time the build status toggled from "Passing" to "Failing" and back, my build script automatically committed the changes. By paging through the commit logs, you can see how the code evolved over time. (See below for details.)
 
 The application is a simple runner for [JSHint](http://www.jshint.com), a code quality tool based on JSLint. The autocommit experiment was [suggested by azundo](http://news.ycombinator.com/item?id=3977616) on Hacker News, in response to the announcement of my upcoming screencast series, [Let's Code: Test-Driven Javascript](http://letscodejavascript.com).
 
@@ -13,6 +13,12 @@ Let's Code: Test-Driven Javascript
 I'm launching the series through Kickstarter so I can give it the time and attention it deserves. For more information or to back the project, [check out the Kickstarter](http://letscodejavascript.com).
 
 The code in this repository uses [Mocha](http://visionmedia.github.com/mocha/) and [expect.js](https://github.com/LearnBoost/expect.js) for testing. The actual screencast could well use a different test framework or style. Once the project is funded, I'll take a second look at the Javascript testing ecosystem and make a decision about which framework to use. I'll also talk through my decision-making process on the Live channel of the screencast.
+
+Reviewing the Commit Logs
+----------
+Each commit shows a small step in the evolution of this project, as the code switched from passing its tests to failing its tests (and vice-versa). The commits are [online here](https://github.com/jamesshore/Autocommit/commits/). The [last commit is here](https://github.com/jamesshore/Autocommit/commit/917cc3e3404ee894242e674652e7848f946bd6e6) and the [first commit is here](https://github.com/jamesshore/Autocommit/commit/da08ab8f1ec8480eb78df1689e2c48dbd16f8aaf).
+
+GitHub isn't the most convenient way to review the commits, but it works. For a more convenient approach, download a copy of the repository [from GitHub](https://github.com/jamesshore/Autocommit) and view the history using `gitk` or the Mac GitHub application. To use `gitk`, open a terminal or command window, switch to the root of the Autocommit repository, and type `gitk`.
 
 About the Runner
 ----------

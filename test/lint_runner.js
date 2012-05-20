@@ -66,8 +66,15 @@ describe("Source code validation", function() {
 
 describe("File loading", function() {
 	it("(test prep)", function() {
-		var name = temp.mkdirSync();
+		testConsole.restore();
+
+		var name = temp.mkdirSync("autocommit-test");
 		console.log(name);
+		var name2 = fs.writeFileSync("code.js", "Example");
+		console.log(name2);
+
+
+		testConsole.ignore();
 	});
 });
 

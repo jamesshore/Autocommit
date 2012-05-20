@@ -3,6 +3,24 @@
 var expect = require("expect.js");
 var lint = require("../src/lint_runner.js");
 
+//TODO: redirect console.log instead of process.stdout.write?
+
+// stdout inspection code inspired by http://userinexperience.com/?p=714
+function redirectConsole(newFunction) {
+	var original = process.stdout.write;
+	process.stdout.write = newFunction;
+	return original;
+}
+
+function testConsole(test) {
+	var output = [];
+	var original = redirectConsole(function(string, encoding, fd) {
+		output.push(string);
+	};
+	test(output);
+	process.stdout.write = original;
+}
+
 describe("Lint runner", function() {
 	it("should pass good source code", function(){
 		expect(lint.validateSource("var a = 1;")).to.be(true);
@@ -22,19 +40,6 @@ describe("Lint runner", function() {
 });
 
 describe("Error reporting", function() {
-	// stdout inspection code inspired by http://userinexperience.com/?p=714
-	function testConsole(test) {
-		var output = [];
-		var write = process.stdout.write;
-		process.stdout.write = function(string, encoding, fd) {
-			output.push(string);
-		};
-
-		test(output);
-
-		process.stdout.write = write;
-	}
-
 	it("should say 'ok' on pass", function() {
 		testConsole(function(output) {
 			lint.validateSource("");

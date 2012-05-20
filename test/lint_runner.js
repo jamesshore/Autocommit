@@ -77,7 +77,7 @@ describe("File validation", function() {
 		assert.ok(!path.existsSync(testFile), "Could not delete test file: " + testFile);
 	});
 
-	it("should load file from file system (assume UTF-8)", function() {
+	it("should load file from file system (UTF-8 assumed)", function() {
 		writeTestFile("var a = 1");
 		expect(lint.validateFile(testFile)).to.be(false);
 	});
@@ -158,7 +158,7 @@ describe("File list validation", function() {
 
 	it("should validate later files even if early file fails", function() {
 		inspectConsole(function(output) {
-			writeTestFiles("var a=1", "var b=1;", "var c=1;");
+			writeTestFiles("YARR", "var b=1;", "var c=1;");
 			lint.validateFileList(testFiles);
 			expect(output[0]).to.eql(testFiles[0] + " failed");
 			expect(output[3]).to.eql(testFiles[1] + " ok");
@@ -218,6 +218,6 @@ describe("Error reporting", function() {
 	});
 
 	// To do: Some edge cases that I don't know how to trigger, so haven't tested or supported:
-	// 1- two reasons in a row (no line number or evidence); may not occur in current version
+	// 1- two reasons in a row (line number & evidence undefined); may not occur in current version
 	// 2- null element at end of errors array; occurs when JSHint catches exception
 });

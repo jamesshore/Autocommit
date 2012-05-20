@@ -21,5 +21,5 @@ exports.validateSource = function(sourceCode, options, globals, description) {
 
 exports.validateFile = function(filename) {
 	var sourceCode = fs.readFileSync(filename, "utf8");
-	exports.validateSource(sourceCode);
+	return exports.validateSource(sourceCode);
 };

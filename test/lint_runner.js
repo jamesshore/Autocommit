@@ -74,7 +74,7 @@ describe("Error reporting", function() {
 			lint.validateSource("foo");
 			expect(output).to.eql([
 				"fail",
-				"1"
+				"1: foo"
 			]);
 		});
 	});

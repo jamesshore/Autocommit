@@ -1,6 +1,7 @@
 "use strict";
 
 var jshint = require("jshint").JSHINT;
+var fs = require("fs");
 
 exports.validateSource = function(sourceCode, options, globals, description) {
 	description = description ? description + " " : "";
@@ -16,4 +17,9 @@ exports.validateSource = function(sourceCode, options, globals, description) {
 		});
 	}
 	return pass;
+};
+
+exports.validateFile = function(filename) {
+	var sourceCode = fs.readFileSync(filename, "utf8");
+	exports.validateSource(sourceCode);
 };

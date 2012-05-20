@@ -10,7 +10,7 @@ exports.validateSource = function(sourceCode, options, globals) {
 	else {
 		console.log("fail");
 		jshint.errors.forEach(function(error) {
-			console.log(error.line + ": " + error.evidence);
+			console.log(error.line + ": " + error.evidence.trim());
 			console.log("   " + error.reason);
 		});
 	}

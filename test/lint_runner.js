@@ -1,6 +1,7 @@
 "use strict";
 
 var expect = require("expect.js");
+var assert = require("assert");
 var lint = require("../src/lint_runner.js");
 
 //TODO: redirect console.log instead of process.stdout.write?
@@ -9,11 +10,12 @@ var lint = require("../src/lint_runner.js");
 function RedirectConsole(newFunction) {
 	var original;
 	this.redirect = function(newFunction) {
-		expect(original).to.be.not.ok();
-		var original = console.log;
+		assert.ok(!original, "Console already redirected");
+		original = console.log;
 		console.log = newFunction;
-	}
+	};
 	this.restore = function() {
+		assert.ok(original, "Console not redirected");
 		console.log = original;
 		original = null;
 	};
@@ -21,7 +23,8 @@ function RedirectConsole(newFunction) {
 
 function testConsole(test) {
 	var output = [];
-	var console = new RedirectConsole(function(string) {
+	var console = new RedirectConsole();
+	console.redirect(function(string) {
 		output.push(string);
 	});
 	test(output);
@@ -29,14 +32,14 @@ function testConsole(test) {
 }
 
 describe("Lint runner", function() {
-	var ignoredConsole;
+	var console = new RedirectConsole();
 
 	beforeEach(function() {
-		ignoredConsole = new RedirectConsole(function() {});
+		console.redirect(function() {});
 	});
 
 	afterEach(function() {
-		ignoredConsole.restore();
+		console.restore();
 	});
 
 	it("should pass good source code", function(){

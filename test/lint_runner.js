@@ -92,7 +92,7 @@ describe("File validation", function() {
 		expect(lint.validateFile(testFile, { undef: true }, { a: true })).to.be(true);
 	});
 
-	it("should report filename on console", function() {
+	it("should report filename", function() {
 		inspectConsole(function(output) {
 			writeTestFile("");
 			lint.validateFile(testFile);
@@ -136,10 +136,15 @@ describe("File list validation", function() {
 
 	it("should pass when all files valid", function() {
 		writeTestFiles("var a=1;", "var b=1;", "var c=1;");
+		expect(lint.validateFileList(testFiles))).to.be(true);
+	});
+
+	it("should fail when any file invalid", function() {
+		writeTestFiles("var a=1;", "var b=1;", "YARR", "var d=1;");
 		lint.validateFileList(testFiles);
 	});
 
-	it("should fail when any file invalid");
+	it("should report filenames");
 
 	it("should validate later files even if early file fails");
 });

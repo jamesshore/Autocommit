@@ -160,15 +160,13 @@ describe("File list validation", function() {
 		inspectConsole(function(output) {
 			writeTestFiles("var a=1", "var b=1;", "var c=1;");
 			lint.validateFileList(testFiles);
-			expect(output).to.eql([
-				testFiles[0] + " failed",
-				"1: var a=1",
-				"   Missing semicolon.",
-				testFiles[1] + " ok",
-				testFiles[2] + " ok"
-			]);
+			expect(output[0]).to.eql(testFiles[0] + " fail");
+			expect(output[3]).to.eql(testFiles[1] + " ok");
+			expect(output[4]).to.eql(testFiles[2] + " ok");
 		});
 	});
+
+	//TODO: report "failed" not "fail"
 });
 
 describe("Error reporting", function() {

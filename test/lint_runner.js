@@ -160,13 +160,11 @@ describe("File list validation", function() {
 		inspectConsole(function(output) {
 			writeTestFiles("var a=1", "var b=1;", "var c=1;");
 			lint.validateFileList(testFiles);
-			expect(output[0]).to.eql(testFiles[0] + " fail");
+			expect(output[0]).to.eql(testFiles[0] + " failed");
 			expect(output[3]).to.eql(testFiles[1] + " ok");
 			expect(output[4]).to.eql(testFiles[2] + " ok");
 		});
 	});
-
-	//TODO: report "failed" not "fail"
 });
 
 describe("Error reporting", function() {
@@ -181,7 +179,7 @@ describe("Error reporting", function() {
 		inspectConsole(function(output) {
 			lint.validateSource("foo;");
 			expect(output).to.eql([
-				"fail",
+				"failed",
 				"1: foo;",
 				"   Expected an assignment or function call and instead saw an expression."
 			]);
@@ -192,7 +190,7 @@ describe("Error reporting", function() {
 		inspectConsole(function(output) {
 			lint.validateSource("foo;\nbar()");
 			expect(output).to.eql([
-				"fail",
+				"failed",
 				"1: foo;",
 				"   Expected an assignment or function call and instead saw an expression.",
 				"2: bar()",
@@ -215,7 +213,7 @@ describe("Error reporting", function() {
 		});
 		inspectConsole(function(output) {
 			lint.validateSource("foo;", {}, {}, "code B");
-			expect(output[0]).to.eql("code B fail");
+			expect(output[0]).to.eql("code B failed");
 		});
 	});
 

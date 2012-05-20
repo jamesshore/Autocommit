@@ -64,6 +64,26 @@ describe("Source code validation", function() {
 	});
 });
 
+describe("File loading", function() {
+	var tempFile = "build/temp_files/file-loading-test.js";
+
+	afterEach(function() {
+		if (path.existsSync(tempFile)) fs.unlinkSync(tempFile);
+		assert.ok(!path.existsSync(tempFile), "Could not delete test file: " + tempFile);
+	});
+
+	it("should load file from file system (assume UTF-8)", function() {
+		fs.writeFileSync(tempFile, "var a = 1;");
+		expect(lint.validateFile(tempFile)).to.be(true);
+	});
+
+	it("should respect options", function() {
+//		fs.writeFileSync(tempFile)
+	});
+
+	// TODO: should use filename as description
+});
+
 describe("Error reporting", function() {
 	it("should say 'ok' on pass", function() {
 		inspectConsole(function(output) {
@@ -117,23 +137,4 @@ describe("Error reporting", function() {
 	// To do: Some edge cases that I don't know how to trigger, so haven't tested or supported:
 	// 1- two reasons in a row (no line number or evidence); may not occur in current version
 	// 2- null element at end of errors array; occurs when JSHint catches exception
-});
-
-describe("File loading", function() {
-	var tempFile = "build/temp_files/file-loading-test.js";
-
-	afterEach(function() {
-		if (path.existsSync(tempFile)) fs.unlinkSync(tempFile);
-		assert.ok(!path.existsSync(tempFile), "Could not delete test file: " + tempFile);
-	});
-
-	it("should load file from file system (assume UTF-8)", function() {
-		inspectConsole(function(output) {
-			fs.writeFileSync(tempFile, "foo;");
-			lint.validateFile(tempFile);
-			expect(output[1]).to.eql("1: foo;");
-		});
-	});
-
-	// TODO: should use filename as description
 });

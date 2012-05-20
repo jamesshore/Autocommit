@@ -125,7 +125,8 @@ describe("File list validation", function() {
 	});
 
 	it("should pass when all files valid", function() {
-		writeTestFiles("a", "b", "c");
+		writeTestFiles("var a=1;", "var b=1;", "var c=1;");
+		lint.validateFileList(testFiles);
 	});
 
 	it("should fail when any file invalid");

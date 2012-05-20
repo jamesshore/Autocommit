@@ -35,7 +35,7 @@ describe("Lint runner", function() {
 	});
 
 	it("should pass good source code", function(){
-		expect(lint.validateSource("var a = 1;x")).to.be(true);
+		expect(lint.validateSource("var a = 1;")).to.be(true);
 	});
 
 	it("should fail bad source code", function() {

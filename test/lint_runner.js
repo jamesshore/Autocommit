@@ -67,7 +67,7 @@ describe("Source code validation", function() {
 describe("File loading", function() {
 	it("(test prep)", function() {
 		var name = temp.mkdirSync();
-		util.log(name);
+		console.log(name);
 	});
 });
 

@@ -87,7 +87,13 @@ describe("File loading", function() {
 		expect(lint.validateFile(tempFile, { undef: true }, { a: true })).to.be(true);
 	});
 
-	// TODO: should use filename as description
+	it("should report filename on console", function() {
+		inspectConsole(function(output) {
+			fs.writeFileSync(tempFile, "");
+			lint.validateFile(tempFile);
+			expect(output[0]).to.eql(tempFile + " ok");
+		})
+	})
 });
 
 describe("Error reporting", function() {

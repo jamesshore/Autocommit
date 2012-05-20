@@ -7,12 +7,15 @@ var lint = require("../src/lint_runner.js");
 //TODO: redirect console.log instead of process.stdout.write?
 
 // stdout inspection code inspired by http://userinexperience.com/?p=714
-function RedirectConsole(newFunction) {
+function TestConsole(newFunction) {
 	var original;
 	this.redirect = function(newFunction) {
 		assert.ok(!original, "Console already redirected");
 		original = console.log;
 		console.log = newFunction;
+	};
+	this.ignore = function() {
+		this.redirect(function() {};);
 	};
 	this.restore = function() {
 		assert.ok(original, "Console not redirected");
@@ -23,7 +26,7 @@ function RedirectConsole(newFunction) {
 
 function testConsole(test) {
 	var output = [];
-	var console = new RedirectConsole();
+	var console = new TestConsole();
 	console.redirect(function(string) {
 		output.push(string);
 	});
@@ -32,7 +35,7 @@ function testConsole(test) {
 }
 
 describe("Lint runner", function() {
-	var console = new RedirectConsole();
+	var console = new TestConsole();
 
 	beforeEach(function() {
 		console.redirect(function() {});

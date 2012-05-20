@@ -74,7 +74,8 @@ describe("Error reporting", function() {
 			lint.validateSource("foo");
 			expect(output).to.eql([
 				"fail",
-				"1: foo"
+				"1: foo",
+				"\tExpected an assignment or function call and instead saw an expression."
 			]);
 		});
 	});

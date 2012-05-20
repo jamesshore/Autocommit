@@ -7,8 +7,8 @@ var lint = require("../src/lint_runner.js");
 
 // stdout inspection code inspired by http://userinexperience.com/?p=714
 function redirectConsole(newFunction) {
-	var original = process.stdout.write;
-	process.stdout.write = newFunction;
+	var original = console.log;
+	console.log = newFunction;
 	return original;
 }
 
@@ -18,7 +18,7 @@ function testConsole(test) {
 		output.push(string);
 	});
 	test(output);
-	process.stdout.write = original;
+	console.log = original;
 }
 
 describe("Lint runner", function() {

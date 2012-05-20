@@ -59,6 +59,7 @@ describe("Lint runner", function() {
 	it("should respect globals", function() {
 		expect(lint.validateSource("a = 1;", { undef: true }, { a: true })).to.be(true);
 	});
+
 });
 
 describe("Error reporting", function() {
@@ -79,6 +80,12 @@ describe("Error reporting", function() {
 			]);
 		});
 	});
+
+	it("manual inspection", function() {
+		console.restore();
+		lint.validateSource("foo");
+		console.ignore();
+	})
 
 	//TODO: optional source code descriptor
 });

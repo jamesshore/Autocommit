@@ -124,6 +124,16 @@ describe("File list validation", function() {
 		});
 	});
 
+	it("should respect options", function() {
+		writeTestFiles("var a=1");
+		expect(lint.validateFileList(testFiles, { asi: true })).to.be(true);
+	});
+
+//	it("should respect globals", function() {
+//		writeTestFile("a = 1;");
+//		expect(lint.validateFile(testFile, { undef: true }, { a: true })).to.be(true);
+//	});
+
 	it("should pass when all files valid", function() {
 		writeTestFiles("var a=1;", "var b=1;", "var c=1;");
 		lint.validateFileList(testFiles);

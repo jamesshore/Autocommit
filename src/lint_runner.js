@@ -25,5 +25,5 @@ exports.validateFile = function(filename, options, globals) {
 };
 
 exports.validateFileList = function(fileList) {
-	return true;
+	return exports.validateFile(fileList[0]);
 };

@@ -11,7 +11,7 @@ exports.validateSource = function(sourceCode, options, globals) {
 		console.log("fail");
 		var error = jshint.errors[0];
 		console.log(error.line + ": " + error.evidence);
-		console.log("\t" + error.reason);
+		console.log("   " + error.reason);
 	}
 	return pass;
 };

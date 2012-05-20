@@ -73,13 +73,13 @@ describe("File loading", function() {
 	});
 
 	it("should load file from file system (assume UTF-8)", function() {
-		fs.writeFileSync(tempFile, "var a = 1;");
-		expect(lint.validateFile(tempFile)).to.be(true);
+		fs.writeFileSync(tempFile, "var a = 1");
+		expect(lint.validateFile(tempFile)).to.be(false);
 	});
 
 	it("should respect options", function() {
-		fs.writeFileSync(tempFile, "a = 1;");
-		expect(lint.validateFile(tempFile, { undef: false })).to.be(true);
+		fs.writeFileSync(tempFile, "a = 1");
+		expect(lint.validateFile(tempFile, { asi: true })).to.be(true);
 	});
 
 	// TODO: should use filename as description

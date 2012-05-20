@@ -56,7 +56,7 @@ describe("Source code validation", function() {
 	});
 
 	it("should respect options", function() {
-		expect(lint.validateSource("a = 1;", { undef:false })).to.be(true);
+		expect(lint.validateSource("a = 1")).to.be(true);
 	});
 
 	it("should respect globals", function() {
@@ -65,33 +65,37 @@ describe("Source code validation", function() {
 });
 
 describe("File loading", function() {
-	var tempFile = "build/temp_files/file-loading-test.js";
+	var testFile = "build/temp_files/file-loading-test.js";
+
+	function writeTestFile(sourceCode) {
+		fs.writeFileSync(testFile, sourceCode);
+	}
 
 	afterEach(function() {
-		if (path.existsSync(tempFile)) fs.unlinkSync(tempFile);
-		assert.ok(!path.existsSync(tempFile), "Could not delete test file: " + tempFile);
+		if (path.existsSync(testFile)) fs.unlinkSync(testFile);
+		assert.ok(!path.existsSync(testFile), "Could not delete test file: " + testFile);
 	});
 
 	it("should load file from file system (assume UTF-8)", function() {
-		fs.writeFileSync(tempFile, "var a = 1");
-		expect(lint.validateFile(tempFile)).to.be(false);
+		writeTestFile("var a = 1");
+		expect(lint.validateFile(testFile)).to.be(false);
 	});
 
 	it("should respect options", function() {
-		fs.writeFileSync(tempFile, "a = 1");
-		expect(lint.validateFile(tempFile, { asi: true })).to.be(true);
+		writeTestFile("a = 1");
+		expect(lint.validateFile(testFile, { asi: true })).to.be(true);
 	});
 
 	it("should respect globals", function() {
-		fs.writeFileSync(tempFile, "a = 1;");
-		expect(lint.validateFile(tempFile, { undef: true }, { a: true })).to.be(true);
+		writeTestFile("a = 1;");
+		expect(lint.validateFile(testFile, { undef: true }, { a: true })).to.be(true);
 	});
 
 	it("should report filename on console", function() {
 		inspectConsole(function(output) {
-			fs.writeFileSync(tempFile, "");
-			lint.validateFile(tempFile);
-			expect(output[0]).to.eql(tempFile + " ok");
+			writeTestFile("");
+			lint.validateFile(testFile);
+			expect(output[0]).to.eql(testFile + " ok");
 		});
 	});
 });

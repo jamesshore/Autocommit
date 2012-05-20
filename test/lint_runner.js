@@ -141,7 +141,7 @@ describe("File list validation", function() {
 
 	it("should fail when any file invalid", function() {
 		writeTestFiles("var a=1;", "var b=1;", "YARR", "var d=1;");
-		lint.validateFileList(testFiles);
+		expect(lint.validateFileList(testFiles)).to.be(false);
 	});
 
 	it("should report filenames");

@@ -43,7 +43,7 @@ describe("Error reporting", function() {
 	it("should say 'ok' on pass", function() {
 		testConsole(function(output) {
 			lint.validateSource("");
-			expect(output).to.eql(["ok\n"]);
+			expect(output).to.eql(["ok"]);
 		});
 	});
 });

@@ -6,6 +6,7 @@ var fs = require("fs");
 var path = require("path");
 
 var lint = require("../src/lint_runner.js");
+var testDir = "build/temp_files/";
 
 // console inspection code inspired by http://userinexperience.com/?p=714
 function TestConsole(newFunction) {
@@ -64,8 +65,8 @@ describe("Source code validation", function() {
 	});
 });
 
-describe("File loading", function() {
-	var testFile = "build/temp_files/file-loading-test.js";
+describe("File validation", function() {
+	var testFile = testDir + "file-loading-test.js";
 
 	function writeTestFile(sourceCode) {
 		fs.writeFileSync(testFile, sourceCode);
@@ -95,9 +96,33 @@ describe("File loading", function() {
 		inspectConsole(function(output) {
 			writeTestFile("");
 			lint.validateFile(testFile);
-			expect(output[0]).to.eql(testFile + " ok");
+			expect(output).to.eql([testFile + " ok"]);
 		});
 	});
+});
+
+describe("File list validation", function() {
+	var testFile = testDir + "file-loading-test.js";
+
+	function writeTestFiles() {
+		testConsole.restore();
+
+		for (int i = 0; i < arguments.length; i++) {
+			console.log(i + ": " + arguments[i]);
+		}
+
+//		fs.writeFileSync(testFile, sourceCode);
+
+		testConsole.ignore();
+	}
+
+	it("should pass when all files valid", function() {
+		writeTestFiles("a", "b", "c");
+	});
+
+	it("should fail when any file invalid");
+
+	it("should validate later files even if early file fails");
 });
 
 describe("Error reporting", function() {

@@ -10,13 +10,13 @@ Let's Code: Test-Driven Javascript
 ---------
 *Let's Code: Test-Driven Javascript* is my new screencast series focusing on Javascript, TDD, and Node.js. My intention is to create an invaluable resource for anyone doing professional Javascript development. If you found this Autocommit experiment interesting, you'll probably like *Let's Code: Test-Driven Javascript*. 
 
-I'm launching the series through Kickstarter so I can give it the time and attention it deserves. For details, [check out the Kickstarter](http://letscodejavascript.com).
+I'm launching the series through Kickstarter so I can give it the time and attention it deserves. For more information or to back the project, [check out the Kickstarter](http://letscodejavascript.com).
 
 The code in this repository uses [Mocha](http://visionmedia.github.com/mocha/) and [expect.js](https://github.com/LearnBoost/expect.js) for testing. The actual screencast could well use a different test framework or style. Once the project is funded, I'll take a second look at the Javascript testing ecosystem and make a decision about which framework to use. I'll also talk through my decision-making process on the Live channel of the screencast.
 
 About the Runner
 ----------
-*Beware of bugs in this code; I have only tested it, not tried it. (With apologies to Donald Knuth.)*
+*Beware of bugs in this code; I have only tested it, not tried it.* (With apologies to Donald Knuth.)
 
 The runner in this repository provides a convenient front-end to [JSHint](http://www.jshint.com), a linter for Javascript. It should also work for [JSLint](http://www.jslint.com/). 
 

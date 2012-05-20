@@ -72,24 +72,26 @@ describe("Error reporting", function() {
 
 	it("should report errors on failure", function() {
 		inspectConsole(function(output) {
-			lint.validateSource("foo");
+			lint.validateSource("foo;");
 			expect(output).to.eql([
 				"fail",
-				"1: foo",
+				"1: foo;",
 				"   Expected an assignment or function call and instead saw an expression."
 			]);
 		});
 	});
 
 	it("should report all errors", function() {
-		lint.validateSource("foo\nbar()");
-		expect(output).to.eql([
-			"fail",
-			"1: foo",
-			"   Expected an assignment or function call and instead saw an expression."
-			"2: bar()",
-			"   Expected semicolon."
-		]);
+		inspectConsole(function(output) {
+			lint.validateSource("foo;\nbar()");
+			expect(output).to.eql([
+				"fail",
+				"1: foo;",
+				"   Expected an assignment or function call and instead saw an expression.",
+				"2: bar()",
+				"   Missing semicolon."
+			]);
+		});
 	});
 
 	//TODO: optional source code descriptor

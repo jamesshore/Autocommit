@@ -9,9 +9,10 @@ exports.validateSource = function(sourceCode, options, globals) {
 	}
 	else {
 		console.log("fail");
-		var error = jshint.errors[0];
-		console.log(error.line + ": " + error.evidence);
-		console.log("   " + error.reason);
+		jshint.errors.forEach(function(error) {
+			console.log(error.line + ": " + error.evidence);
+			console.log("   " + error.reason);
+		});
 	}
 	return pass;
 };

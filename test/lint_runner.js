@@ -118,10 +118,10 @@ describe("File list validation", function() {
 	}
 
 	afterEach(function() {
-		testFiles.forEach(testFile) {
+		testFiles.forEach(function(testFile) {
 			fs.unlinkSync(testFile);
 			assert.ok(!path.existsSync(testFile), "Could not delete test file: " + testFile);
-		}
+		});
 	});
 
 	it("should pass when all files valid", function() {

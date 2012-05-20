@@ -25,5 +25,7 @@ exports.validateFile = function(filename, options, globals) {
 };
 
 exports.validateFileList = function(fileList, options, globals) {
-	return exports.validateFile(fileList[0], options, globals);
+	return fileList.every(function(filename) {
+		return exports.validateFile(filename, options, globals);
+	});
 };

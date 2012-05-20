@@ -16,7 +16,7 @@ function RedirectConsole(newFunction) {
 
 function testConsole(test) {
 	var output = [];
-	var console = new RedirectConsole(function(string, encoding, fd) {
+	var console = new RedirectConsole(function(string) {
 		output.push(string);
 	});
 	test(output);
@@ -24,6 +24,12 @@ function testConsole(test) {
 }
 
 describe("Lint runner", function() {
+	var ignoredConsole = new RedirectConsole(function() {});
+
+	afterEach(function() {
+		ignoredConsole.restore();
+	});
+
 	it("should pass good source code", function(){
 		expect(lint.validateSource("var a = 1;")).to.be(true);
 	});

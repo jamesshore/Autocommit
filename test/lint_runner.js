@@ -66,7 +66,7 @@ describe("Source code validation", function() {
 });
 
 describe("File validation", function() {
-	var testFile = testDir + "file-loading-test.js";
+	var testFile = testDir + "file-validation.js";
 
 	function writeTestFile(sourceCode) {
 		fs.writeFileSync(testFile, sourceCode);
@@ -102,18 +102,19 @@ describe("File validation", function() {
 });
 
 describe("File list validation", function() {
-	var testFile = testDir + "file-loading-test.js";
+	var testRoot = testDir + "file-list-validation.js-";
+	var testFiles;
+
+	beforeEach(function() {
+		testFiles = [];
+	});
 
 	function writeTestFiles() {
-		testConsole.restore();
-
 		for (var i = 0; i < arguments.length; i++) {
-			console.log(i + ": " + arguments[i]);
+			var testFile = testRoot + i;
+			fs.writeFileSync(testFile, arguments[i]);
+			testFile.push(testFile);
 		}
-
-//		fs.writeFileSync(testFile, sourceCode);
-
-		testConsole.ignore();
 	}
 
 	it("should pass when all files valid", function() {

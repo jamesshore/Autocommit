@@ -70,7 +70,7 @@ describe("File loading", function() {
 
 		var name = temp.mkdirSync("autocommit-test");
 		console.log(name);
-		var name2 = fs.writeFileSync("code.js", "Example");
+		var name2 = fs.writeFileSync(name + "code.js", "Example");
 		console.log(name2);
 
 

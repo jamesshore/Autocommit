@@ -6,7 +6,7 @@ var assert = require("assert");
 var fs = require("fs");
 var path = require("path");
 
-var lint = require("../src/lint_runner.js");
+var lint = require("../lib/lint_runner.js");
 var testDir = "build/temp_files/";
 
 // console inspection code inspired by http://userinexperience.com/?p=714

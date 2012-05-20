@@ -101,7 +101,16 @@ describe("Error reporting", function() {
 		});
 	});
 
-	//TODO: optional source code descriptor
+	it("should include optional description", function() {
+		inspectConsole(function(output) {
+			lint.validateSource("", {}, {}, "code A");
+			expect(output[0]).to.eql("code A ok");
+		});
+	});
+
+	// To do: Some edge cases that I don't know how to trigger, so haven't tested or supported:
+	// 1- two reasons in a row (no line number or evidence); may not occur in current version
+	// 2- null element at end of errors array; occurs when JSHint catches exception
 });
 
 //TODO: delete me

@@ -12,7 +12,7 @@ Let's Code: Test-Driven Javascript
 
 I'm launching the series through Kickstarter so I can give it the time and attention it deserves. For more information or to back the project, [check out the Kickstarter](http://letscodejavascript.com).
 
-The code in this repository uses [Mocha](http://visionmedia.github.com/mocha/) and [expect.js](https://github.com/LearnBoost/expect.js) for testing. The actual screencast could well use a different test framework or style. Once the project is funded, I'll take a second look at the Javascript testing ecosystem and make a decision about which framework to use. I'll also talk through my decision-making process on the Live channel of the screencast.
+The code in this repository uses [Mocha](https://mochajs.org/) and [expect.js](https://github.com/LearnBoost/expect.js) for testing. The actual screencast could well use a different test framework or style. Once the project is funded, I'll take a second look at the Javascript testing ecosystem and make a decision about which framework to use. I'll also talk through my decision-making process on the Live channel of the screencast.
 
 Reviewing the Commit Logs
 ----------
